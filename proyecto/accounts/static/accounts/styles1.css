@@ -12,14 +12,6 @@ html, body {
 
 }
 
-.background{
-    background: url("../images/bulonnex_logo_con_colores.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -36,7 +28,7 @@ header {
     display: flex;
     align-items: center;
     height: 80px;
-    background-color: #333F4B;
+    background-color: black;
     padding: 0 10px;
 
 }
@@ -293,7 +285,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
-    background-color: #1f2a38;
+    background-color: black;
     color: white;
     padding: 20px;
     font-size: 14px;
