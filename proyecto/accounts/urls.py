@@ -24,10 +24,10 @@ urlpatterns = [
     path('login/', views.loginformulario, name= "login"),
     path('register/', views.register, name= "register"),
     path('general/', views.general, name= "general"),
-    path('admin/', admin.site.urls),
     path('ventas_gral/', views.ventas_geral, name= "ventas_geral"),
     path('institucionales/',views.institucionales, name= "institucionales"),
     path('nosotros/',views.nosotros, name= "nosotros"),
     path('pedidosprov/',views.pedidosprov, name= "pedidosprov"),
+    path('productos/',views.productos, name= "productos"),
     
 ]

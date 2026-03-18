@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Usuario
-from .forms import LoginFormulario, RegistroUsuarioForm
+from .models import Producto
+from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoProductoForm
 
 
 # Create your views here.
@@ -81,3 +81,23 @@ def nosotros(request):
 
 def pedidosprov(request):
     return render(request,"accounts/pedidosprov.html")
+
+def productos(request):
+    if request.method == "POST":
+        form = NuevoProductoForm(request.POST)
+        if form.is_valid():
+            Producto.objects.create(
+                producto=form.cleaned_data['producto'],
+                cantidad=form.cleaned_data['cantidad']
+            )
+            return redirect('productos')  # recarga la página
+    else:
+        form = NuevoProductoForm()
+
+    lista_productos = Producto.objects.all()
+
+    return render(request, "accounts/productos.html", {
+        "form": form,
+        "productos": lista_productos
+    })
+

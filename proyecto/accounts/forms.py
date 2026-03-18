@@ -14,3 +14,13 @@ class RegistroUsuarioForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class NuevaVentaForm(forms.Form):
+    producto = forms.CharField()
+    cantidad = forms.IntegerField()
+
+
+class NuevoProductoForm(forms.Form):
+    fechacompra = forms.DateField(required=True)
+    producto = forms.CharField(required=True)
+    cantidad = forms.IntegerField(required=True)

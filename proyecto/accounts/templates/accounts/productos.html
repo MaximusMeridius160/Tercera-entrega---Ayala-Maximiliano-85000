@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} BULONNEX {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'accounts/styles_productos.css' %}">
+    <link rel="icon" href="{% static 'accounts/bulonexIcono.ico' %}">
+</head>
+<body>
+    <header>
+        <h2 class="title">Productos</h2>
+    </header>
+        
+        <nav>
+        <ul class="menu">
+            <li><a href="{% url 'general' %}">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#">Estado de ventas</a>
+                <ul class="submenu">
+                    <li><a href="{% url 'ventas_geral' %}">General</a></li>
+                    <li><a href="#">Desconectadas</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'pedidosprov' %}"> Pedidos a proveedores</a></li>
+            <li><a href="{% url 'productos' %}"> Productos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+    {% block content %}
+        <button type="button" class="btn-nuevo" onclick="abrirModal()">Nuevo producto </button>
+
+        <!-- FONDO OSCURO -->
+<div id="modal" class="modal">
+    
+    <!-- CONTENIDO -->
+    <div class="modal-contenido">
+        
+        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+
+        <h3>Nuevo Producto</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <button type="submit">Guardar</button>
+        </form>
+
+    </div>
+</div>
+
+        <section>
+            <h3>Lista de productos</h3>
+
+            <table>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Fecha de compra</th>
+                </tr>
+
+                    {% for p in productos %}
+                <tr>
+                    <td>{{ p.producto }}</td>
+                    <td>{{ p.cantidad }}</td>
+                    <td>{{p.fecha}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </section>
+
+
+
+
+
+
+    {% endblock %}
+    </main>
+
+    
+        <script>
+            function abrirModal() {
+                document.getElementById("modal").style.display = "block";
+            }
+
+            function cerrarModal() {
+                document.getElementById("modal").style.display = "none";
+            }
+
+            // Cerrar haciendo click afuera
+            window.onclick = function(event) {
+                let modal = document.getElementById("modal");
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    <footer>
+        <div class="institucionales"> 
+            <h3 class="titulo">Institucionales</h3>
+                <a href="{% url 'nosotros' %}">Nosotros</a>
+                <a href="{% url 'institucionales' %}">Politicas institucionales</a>
+    
+        </div>
+
+        <div class="apps">
+            <h3 class="titulo">Otras apps</h3>
+                <a href="#">Instagram</a>
+
+        </div>
+    </footer>
+</body>
+</html>
