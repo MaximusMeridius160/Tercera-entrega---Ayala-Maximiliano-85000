@@ -32,7 +32,7 @@
     <main>
     {% block content %}
         <button type="button" class="btn-nuevo" onclick="abrirModal()">Nuevo producto </button>
-
+        <button type="button" class="btn-nuevo">Stock </button>
         <!-- FONDO OSCURO -->
 <div id="modal" class="modal">
     
@@ -68,7 +68,7 @@
                 <tr>
                     <td>{{ p.producto }}</td>
                     <td>{{ p.cantidad }}</td>
-                    <td>{{p.fecha}}</td>
+                    <td>{{ p.fecha }}</td>
                 </tr>
                 {% endfor %}
             </table>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Producto
+from .models import Producto, Venta
 from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoProductoForm
 
 
@@ -101,3 +101,36 @@ def productos(request):
         "productos": lista_productos
     })
 
+def ventas(request):
+    mensaje_error = None
+
+    if request.method == "POST":
+        form = NuevaVentaForm(request.POST)
+        if form.is_valid():
+            producto = form.cleaned_data['producto']
+            cantidad = form.cleaned_data['cantidad']
+
+            # 🔥 VALIDACIÓN DE STOCK
+            if producto.stock >= cantidad:
+                Venta.objects.create(
+                    producto=producto,
+                    cantidad=cantidad
+                )
+
+                # 🔥 DESCUENTA STOCK
+                producto.stock -= cantidad
+                producto.save()
+
+            return redirect('ventas')
+        else:
+                mensaje_error = "No hay suficiente stock"
+    else:
+        form = NuevaVentaForm()
+
+    ventas = Venta.objects.all()
+
+    return render(request, "ventas_geral.html", {
+        "form": form,
+        "ventas": ventas,
+        "error": mensaje_error
+    })

@@ -37,7 +37,7 @@ header {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    color: rgb(240, 231, 237);
+    color: whitesmoke;
     font-size: 20px;
 }
 
@@ -47,7 +47,7 @@ section {
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
-    width: auto;
+    width: 350px;
     height: auto;
     margin-top: 20px;
     margin: auto;
@@ -100,7 +100,7 @@ section {
 
 /*-----------------------------------NAV---------------------------------------------- */
 nav {
-    background-color: #333;
+    background-color: #3f3f3f;
     width: 100%;        /* ancho completo */
 }
 

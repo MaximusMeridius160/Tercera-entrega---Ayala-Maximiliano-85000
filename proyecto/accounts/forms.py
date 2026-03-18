@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Usuario
+from .models import Usuario, Producto
 
 class LoginFormulario(forms.Form):
     email = forms.EmailField()
@@ -16,11 +16,11 @@ class RegistroUsuarioForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class NuevaVentaForm(forms.Form):
-    producto = forms.CharField()
-    cantidad = forms.IntegerField()
-
+    fecha = forms.DateField(required=True)
+    producto = forms.ModelChoiceField(queryset=Producto.objects.all())
+    cantidad = forms.IntegerField(min_value=1,required=True)
 
 class NuevoProductoForm(forms.Form):
-    fechacompra = forms.DateField(required=True)
+    fecha = forms.DateField(required=True)
     producto = forms.CharField(required=True)
     cantidad = forms.IntegerField(required=True)

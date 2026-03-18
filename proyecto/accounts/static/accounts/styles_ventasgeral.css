@@ -47,11 +47,57 @@ section {
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
-    width: auto;
+    width: 450px;
     height: auto;
     margin-top: 20px;
     margin: auto;
 }
+
+/* FONDO OSCURO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* CAJA DEL MODAL */
+.modal-contenido {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+    animation: aparecer 0.3s ease;
+}
+
+/* BOTÓN CERRAR */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ANIMACIÓN */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .registro{
     background-color: white;
