@@ -85,6 +85,9 @@ def nosotros(request):
 def pedidosprov(request):
     return render(request,"accounts/pedidosprov.html")
 
+def stock(request):
+    return render(request,"accounts/stock.html")
+
 def productos(request):
     if request.method == "POST":
         form = NuevoProductoForm(request.POST)

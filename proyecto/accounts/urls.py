@@ -30,4 +30,6 @@ urlpatterns = [
     path('pedidosprov/',views.pedidosprov, name= "pedidosprov"),
     path('productos/',views.productos, name= "productos"),
     path('instagram/',views.instagram, name= "instagram"),
+    path('stock/',views.stock, name= "stock"),
+    
 ]
