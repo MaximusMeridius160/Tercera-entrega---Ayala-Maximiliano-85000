@@ -32,28 +32,28 @@
     <main>
     {% block content %}
 
-    <button type="button" class="btn-nuevo" onclick="abrirModal()">Nueva venta </button>
+    <button type="button" class="btn-nuevo" onclick="abrirModal()">
+    Nueva venta
+</button>
 
-                        <!-- FONDO OSCURO -->
-                <div id="modal" class="modal">
-                    
-                    <!-- CONTENIDO -->
-                    <div class="modal-contenido">
-                        
-                        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-contenido">
 
-                        <h3>Nueva venta</h3>
+        <span class="cerrar" onclick="cerrarModal()">&times;</span>
 
-                        <form method="POST">
-                            {% csrf_token %}
-                            
-                            {{ form.as_p }}
+        <h3>Nueva venta</h3>
 
-                            <button type="submit">Guardar</button>
-                        </form>
+        <form method="POST">
+            {% csrf_token %}
 
-                    </div>
-                </div>
+            {{ form.as_p }}
+
+            <button type="submit" class="btn-guardar">Guardar</button>
+        </form>
+
+    </div>
+</div>
 
 
     <section>
@@ -81,7 +81,7 @@
     {% endblock %}
     </main>
 
-            <script>
+        <script>
             function abrirModal() {
                 document.getElementById("modal").style.display = "block";
             }

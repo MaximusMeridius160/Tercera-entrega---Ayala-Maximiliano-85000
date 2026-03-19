@@ -1,0 +1,171 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulonex</title>
+    <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #fafafa;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #1f2937;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 20px;
+        color: #f59e0b;
+        }
+
+    .container {
+        max-width: 600px;
+        margin: 80px auto 20px;
+        }
+
+    .post {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    }
+
+    .post img {
+    width: 100%;
+    height: auto;
+    }
+
+    .post-content {
+    padding: 10px;
+    }
+
+    .actions {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    font-size: 18px;
+    }
+
+    .actions span {
+    cursor: pointer;
+    }
+
+    .footer {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    }
+
+    .stories {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+    }
+
+    .story {
+    text-align: center;
+    }
+
+    .story img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #f59e0b;
+    }
+</style>
+</head>
+<body>
+
+<header>
+<h1>Bulonex</h1>
+<span>⚙️ Ferretería</span>
+</header>
+
+<div class="container">
+
+<div class="stories">
+    <div class="story">
+    <img src="https://marketplace.canva.com/EAGpTtJ5B0U/1/0/640w/canva-post-de-instagram-caja-de-herramientas-promoci%C3%B3n-moderno-azul-y-amarillo-BkjoSxZR_9o.jpg">
+    <div>Ofertas</div>
+    </div>
+    <div class="story">
+    <img src="https://img.freepik.com/vector-gratis/caja-herramientas-muchas-herramientas_1308-35876.jpg?semt=ais_rp_progressive&w=740&q=80">
+    <div>Herramientas</div>
+    </div>
+    <div class="story">
+    <img src="https://img.freepik.com/psd-gratis/super-venta-dia-internacional-trabajo-plantilla-diseno-historias-instagram_47987-21565.jpg?semt=ais_rp_progressive&w=740&q=80">
+    <div>Novedades</div>
+    </div>
+</div>
+
+<div class="post">
+    <div class="post-header">
+        <img src="{% static 'images/bulonex_4' %}">
+        <strong>Bulonex</strong>
+        </div>
+        <img src="https://via.placeholder.com/600x400">
+        <div class="actions">
+        <span>❤️</span>
+        <span>💬</span>
+        <span>📤</span>
+    </div>
+        <div class="post-content">
+            🔩 Tornillos de alta resistencia disponibles. ¡Consultanos!
+        </div>
+</div>
+
+<div class="post">
+    <div class="post-header">
+    <img src="https://via.placeholder.com/40">
+    <strong>Bulonex</strong>
+    </div>
+    <img src="https://via.placeholder.com/600x400">
+    <div class="actions">
+    <span>❤️</span>
+    <span>💬</span>
+    <span>📤</span>
+    </div>
+    <div class="post-content">
+🔧 Promo en herramientas eléctricas esta semana.
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Bulonex - Todos los derechos reservados
+</div>
+
+</body>
+</html>

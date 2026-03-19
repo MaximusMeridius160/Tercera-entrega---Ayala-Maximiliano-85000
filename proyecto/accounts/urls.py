@@ -29,5 +29,5 @@ urlpatterns = [
     path('nosotros/',views.nosotros, name= "nosotros"),
     path('pedidosprov/',views.pedidosprov, name= "pedidosprov"),
     path('productos/',views.productos, name= "productos"),
-    
+    path('instagram/',views.instagram, name= "instagram"),
 ]

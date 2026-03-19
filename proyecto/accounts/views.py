@@ -76,6 +76,9 @@ def ventas_geral(request):
 def institucionales(request):
     return render(request, "accounts/institucionales.html")
 
+def instagram(request):
+    return render(request, "accounts/instagram.html")
+
 def nosotros(request):
     return render(request,"accounts/nosotros.html")
 
@@ -109,12 +112,14 @@ def ventas(request):
         if form.is_valid():
             producto = form.cleaned_data['producto']
             cantidad = form.cleaned_data['cantidad']
+            fecha = form.cleaned_data['fecha']
 
             # 🔥 VALIDACIÓN DE STOCK
             if producto.stock >= cantidad:
                 Venta.objects.create(
                     producto=producto,
-                    cantidad=cantidad
+                    cantidad=cantidad,
+                    fecha = fecha,
                 )
 
                 # 🔥 DESCUENTA STOCK
@@ -129,7 +134,7 @@ def ventas(request):
 
     ventas = Venta.objects.all()
 
-    return render(request, "ventas_geral.html", {
+    return render(request, "accounts/ventas_geral.html", {
         "form": form,
         "ventas": ventas,
         "error": mensaje_error
