@@ -28,7 +28,7 @@ header {
     display: flex;
     align-items: center;
     height: 80px;
-    background-color: black;
+    background-color: #FF6A00;
     padding: 0 10px;
 
 }
@@ -62,8 +62,12 @@ section {
     top: 0;
     width: 100%;
     height: 100%;
-    
+
     background-color: rgba(0,0,0,0.6);
+
+    /* 🔥 CLAVE */
+    justify-content: center;
+    align-items: center;
 }
 
 /* CAJA DEL MODAL */
@@ -175,7 +179,7 @@ main {
 
 /* Estilo del botón */
 .btn-nuevo {
-    background-color: #333F4B;
+    background-color: #FF6A00;
     color: white;
     margin: 10px;
     padding: 10px 20px;
@@ -189,7 +193,7 @@ main {
 }
 
 .btn-nuevo:hover {
-    background-color: #6D87A1;
+    background-color: #ff6a0046;
 }
 
 .btn-eliminar {
@@ -285,3 +289,72 @@ a{
 }
 
 
+/* 🔥 FIX MODAL */
+.modal {
+    display: none;
+
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.6);
+
+    justify-content: center;  /* 🔥 CLAVE */
+    align-items: center;      /* 🔥 CLAVE */
+}
+
+/* 🔥 CONTENIDO */
+.modal-contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* 🔥 FORMULARIO */
+.modal-contenido form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🔥 INPUTS VISIBLES */
+.modal-contenido input,
+.modal-contenido select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+
+    background-color: white;
+    color: black;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* LABELS */
+.modal-contenido label {
+    color: black;
+    font-weight: bold;
+}
+
+.btn-guardar{
+    background-color: #FF6A00;
+    color: white;
+    padding-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;       
+}
+
+.btn-guardar:hover{
+    background-color: #ff6a0077;
+    color: black;
+}

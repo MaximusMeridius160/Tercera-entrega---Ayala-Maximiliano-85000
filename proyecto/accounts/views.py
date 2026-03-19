@@ -104,7 +104,7 @@ def productos(request):
         "productos": lista_productos
     })
 
-def ventas(request):
+def ventas_geral(request):
     mensaje_error = None
 
     if request.method == "POST":
@@ -115,7 +115,7 @@ def ventas(request):
             fecha = form.cleaned_data['fecha']
 
             # 🔥 VALIDACIÓN DE STOCK
-            if producto.stock >= cantidad:
+            if producto.cantidad >= cantidad:
                 Venta.objects.create(
                     producto=producto,
                     cantidad=cantidad,
@@ -123,10 +123,10 @@ def ventas(request):
                 )
 
                 # 🔥 DESCUENTA STOCK
-                producto.stock -= cantidad
+                producto.cantidad -= cantidad
                 producto.save()
 
-            return redirect('ventas')
+            return redirect('ventas_geral')
         else:
                 mensaje_error = "No hay suficiente stock"
     else:

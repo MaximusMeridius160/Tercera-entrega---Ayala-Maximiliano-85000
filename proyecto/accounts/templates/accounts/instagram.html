@@ -6,25 +6,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'accounts/bulonexIcono.ico' %}">
     <title>Bulonex</title>
     <style>
+    
+    *{
+        box-sizing: border-box;
+    }
+
     body {
         margin: 0;
         font-family: Arial, sans-serif;
         background: #fafafa;
+        min-height: 100vh;
     }
 
+
     header {
-        position: fixed;
+        position: relative;
+        display: flex;
         top: 0;
         width: 100%;
         background: #1f2937;
         color: white;
         padding: 10px 20px;
-        display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 1000;
     }
 
     header h1 {
@@ -131,10 +138,10 @@
 
 <div class="post">
     <div class="post-header">
-        <img src="{% static 'images/bulonex_4' %}">
+        <img src="">
         <strong>Bulonex</strong>
         </div>
-        <img src="https://via.placeholder.com/600x400">
+        <img src="{% static 'accounts/images/bulonex_4.png' %}">
         <div class="actions">
         <span>❤️</span>
         <span>💬</span>
@@ -150,7 +157,7 @@
     <img src="https://via.placeholder.com/40">
     <strong>Bulonex</strong>
     </div>
-    <img src="https://via.placeholder.com/600x400">
+    <img src="{% static 'accounts/images/bulonex_ofertas.png' %}">
     <div class="actions">
     <span>❤️</span>
     <span>💬</span>

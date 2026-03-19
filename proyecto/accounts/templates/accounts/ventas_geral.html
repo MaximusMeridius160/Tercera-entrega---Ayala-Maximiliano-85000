@@ -30,75 +30,76 @@
     </nav>
 
     <main>
-    {% block content %}
 
+        
+    
+    <!-- BOTÓN -->
     <button type="button" class="btn-nuevo" onclick="abrirModal()">
-    Nueva venta
-</button>
+        Nueva venta
+    </button>
 
-<!-- MODAL -->
-<div id="modal" class="modal">
-    <div class="modal-contenido">
+    <!-- MODAL -->
+    <div id="modal" class="modal">
 
-        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+        <div class="modal-contenido">
 
-        <h3>Nueva venta</h3>
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
 
-        <form method="POST">
-            {% csrf_token %}
+            <h3>Nueva venta</h3>
 
-            {{ form.as_p }}
+            <form method="POST">
+                {% csrf_token %}
 
-            <button type="submit" class="btn-guardar">Guardar</button>
-        </form>
+                {{ form.as_p }}
+
+                <button class="btn-guardar" type="submit">Guardar</button>
+            </form>
+
+        </div>
 
     </div>
-</div>
 
-
+    <!-- TABLA -->
     <section>
-        <h3>Lista de productos vendidos</h3>
+        <h3>Lista de ventas</h3>
 
-            <table>
-                <tr>
-                    <th>Fecha de venta</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    
-                </tr>
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+            </tr>
 
-                    {% for v in ventas %}
-                <tr>
-                    <td>{{ v.fecha }}</td>
-                    <td>{{ v.producto }}</td>
-                    <td>{{ v.cantidad }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-
-
+            {% for v in ventas %}
+            <tr>
+                <td>{{ v.fecha }}</td>
+                <td>{{ v.producto }}</td>
+                <td>{{ v.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </section>
-    {% endblock %}
-    </main>
 
-        <script>
-            function abrirModal() {
-                document.getElementById("modal").style.display = "block";
-            }
+</main>
 
-            function cerrarModal() {
-                document.getElementById("modal").style.display = "none";
-            }
+<!-- JS -->
+<script>
+function abrirModal() {
+    document.getElementById("modal").style.display = "flex";
+}
 
-            // Cerrar haciendo click afuera
-            window.onclick = function(event) {
-                let modal = document.getElementById("modal");
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
 
+// cerrar clic afuera
+window.onclick = function(e) {
+    let modal = document.getElementById("modal");
+    if (e.target === modal) {
+        cerrarModal();
+    }
+}
+</script>
 
 
 

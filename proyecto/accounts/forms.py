@@ -20,6 +20,10 @@ class NuevaVentaForm(forms.Form):
     producto = forms.ModelChoiceField(queryset=Producto.objects.all())
     cantidad = forms.IntegerField(min_value=1,required=True)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['producto'].queryset = Producto.objects.all()
+
 class NuevoProductoForm(forms.Form):
     fecha = forms.DateField(required=True)
     producto = forms.CharField(required=True)
