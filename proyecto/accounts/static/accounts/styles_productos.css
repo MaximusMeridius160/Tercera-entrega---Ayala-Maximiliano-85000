@@ -274,4 +274,86 @@ a{
     margin-top: 4px ;
 }
 
+/* 🔥 FIX MODAL */
+.modal {
+    display: none;
 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.6);
+
+    justify-content: center;  /* 🔥 CLAVE */
+    align-items: center;      /* 🔥 CLAVE */
+}
+
+/* 🔥 CONTENIDO */
+
+.form-title{
+    background-color:#2F2F2F;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border-color: #FF6A00;
+    border-style: groove;
+    margin: 10px;
+}
+
+.modal-contenido {
+    background-color: #BFC3C7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* 🔥 FORMULARIO */
+.modal-contenido form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+/* 🔥 INPUTS VISIBLES */
+.modal-contenido input,
+.modal-contenido select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* LABELS */
+.modal-contenido label {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+
+.btn-guardar{
+    background-color: #FF6A00;
+    color: white;
+    padding-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;       
+}
+
+.btn-guardar:hover{
+    background-color: #ff6a0077;
+    color: black;
+}
