@@ -164,7 +164,7 @@ main {
 
 /* Estilo del botón */
 .btn-nuevo {
-    background-color: #333F4B;
+    background-color: #FF6A00;
     color: white;
     margin: 10px;
     padding: 10px 20px;
@@ -178,7 +178,8 @@ main {
 }
 
 .btn-nuevo:hover {
-    background-color: #6D87A1;
+    background-color:#ff6a0077;
+;
 }
 
 .btn-eliminar {

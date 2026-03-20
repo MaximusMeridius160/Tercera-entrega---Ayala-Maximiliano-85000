@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Producto, Venta
-from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoProductoForm
+from .models import Venta, Producto, Compra
+from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoCompraForm, NuevoProductoFrom
 
 
 # Create your views here.
@@ -85,26 +85,65 @@ def nosotros(request):
 def pedidosprov(request):
     return render(request,"accounts/pedidosprov.html")
 
-def stock(request):
-    return render(request,"accounts/stock.html")
+def producto(request):
+    mensaje_error = None
 
-def productos(request):
     if request.method == "POST":
-        form = NuevoProductoForm(request.POST)
+        form = NuevoProductoFrom(request.POST)
         if form.is_valid():
-            Producto.objects.create(
-                producto=form.cleaned_data['producto'],
-                cantidad=form.cleaned_data['cantidad']
-            )
-            return redirect('productos')  # recarga la página
-    else:
-        form = NuevoProductoForm()
+            nombre = form.cleaned_data['producto']
+            cantidad = form.cleaned_data['cantidad']
 
-    lista_productos = Producto.objects.all()
+            # 🔥 BUSCAR SI EXISTE
+            producto_obj, creado = Producto.objects.get_or_create(
+                producto=nombre,
+                defaults={'cantidad': cantidad}
+            )
+
+            if not creado:
+                # 🔥 SI YA EXISTE → SUMA STOCK
+                producto_obj.cantidad += cantidad
+                producto_obj.save()
+
+            return redirect('stock')
+    else:
+        form = NuevoProductoFrom()
+
+    productos = Producto.objects.all()
+
+    return render(request, "accounts/stock.html", {
+        "form": form,
+        "productos": productos,
+        "error": mensaje_error
+    })
+
+def compra(request):
+    if request.method == "POST":
+        form = NuevoCompraForm(request.POST)
+        if form.is_valid():
+            producto_obj = form.cleaned_data['producto']
+            cantidad = form.cleaned_data['cantidad']
+            fecha = form.cleaned_data['fecha']
+                
+            Compra.objects.create(
+                producto=producto_obj,
+                cantidad=cantidad,
+                fecha=fecha
+            )
+
+            # 🔥 SUMA STOCK
+            producto_obj.cantidad += cantidad
+            producto_obj.save()
+
+            return redirect('productos')
+    else:
+        form = NuevoCompraForm()
+
+    compras = Compra.objects.all()
 
     return render(request, "accounts/productos.html", {
         "form": form,
-        "productos": lista_productos
+        "compras": compras
     })
 
 def ventas_geral(request):
