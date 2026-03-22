@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from .models import Usuario, Compra, Producto, Venta
+from .models import Usuario, Compra, Producto, Venta, PedidosProv
 
 
 class UsuarioInline(admin.StackedInline):
@@ -50,3 +50,15 @@ class ProductoAdmin(admin.ModelAdmin):
 @admin.register(Venta)
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ("fecha", "producto", "cantidad")
+
+
+@admin.register(PedidosProv)
+class PedidosAdmin(admin.ModelAdmin):
+    list_display = (
+        "fecha_pedido",
+        "producto_pedido_new",
+        "producto_pedido_existente",
+        "cantidad_pedida",
+        "tipo",
+        "email"
+    )

@@ -15,6 +15,13 @@ class Usuario(models.Model):
 class Producto(models.Model):
     producto = models.CharField(max_length=100)
     cantidad = models.IntegerField()
+    
+    class Unidad(models.TextChoices):
+        UNIDAD = "unidad", "Unidad"
+        CAJA = "caja", "Caja"
+        METRO = "metro", "Metro"
+
+    unidad = models.CharField(max_length=20, choices=Unidad.choices)
 
     def __str__(self):
         return self.producto
@@ -35,3 +42,15 @@ class Venta(models.Model):
     def __str__(self):
         return f"{self.producto}"   
     
+class PedidosProv(models.Model):
+    fecha_pedido = models.DateField(default=timezone.now)
+    producto_pedido_new = models.CharField(null=True, blank=True)
+    producto_pedido_existente = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True, blank=True)
+    cantidad_pedida = models.IntegerField()
+    email = models.EmailField()
+    tipo= models.CharField(max_length=20)
+
+class NuevosProveedores(models.Model):
+    nombre = models.CharField()
+    email = models.EmailField()
+    telefono = models.IntegerField()

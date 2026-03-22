@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Venta, Producto, Compra
-from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoCompraForm, NuevoProductoFrom
+from .models import Venta, Producto, Compra, PedidosProv, NuevosProveedores
+from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoCompraForm, NuevoProductoFrom, PedidoExistenteForm, PedidoNuevoForm, NuevoProveedor
 
 
 # Create your views here.
@@ -82,8 +82,80 @@ def instagram(request):
 def nosotros(request):
     return render(request,"accounts/nosotros.html")
 
+def agregarproveedor(request):
+    mensaje_error = None
+
+    if request.method == "POST":
+        form = NuevoProveedor(request.POST)
+
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            email = form.cleaned_data['email']
+            telefono = form.cleaned_data['telefono']
+
+            NuevosProveedores.objects.create(
+                nombre = nombre,
+                email = email,
+                telefono = telefono
+            )
+
+            return redirect ('agregarproveedor')
+
+    else:
+        form = NuevoProveedor()
+    
+    proveedores = NuevosProveedores.objects.all()
+
+    return render(request,"accounts/agregarproveedor.html", {
+        "form": form,
+        "proveedores": proveedores,
+        "error": mensaje_error
+    })
+
 def pedidosprov(request):
-    return render(request,"accounts/pedidosprov.html")
+    mensaje_error = None
+    tipo = None
+
+    if request.method == "POST":
+        tipo = request.POST.get("tipo")
+
+        if tipo == "nuevo":
+            form = PedidoNuevoForm(request.POST)
+        elif tipo == "existente":
+            form = PedidoExistenteForm(request.POST)
+        else:
+            form = PedidoNuevoForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            PedidosProv.objects.create(
+                fecha_pedido=data.get("fecha_pedido"),
+                producto_pedido_new=data.get("producto_pedido_new"),
+                producto_pedido_existente=data.get("producto_pedido_existente"),
+                cantidad_pedida=data.get("cantidad_pedida"),
+                email=data.get("email"),
+                tipo=tipo
+            )
+
+            return redirect('pedidosprov')
+    
+    form_nuevo = PedidoNuevoForm()
+    form_existente = PedidoExistenteForm()
+        
+
+    pedidos_nuevos = PedidosProv.objects.filter(tipo="nuevo")
+    pedidos_existentes = PedidosProv.objects.filter(tipo="existente")
+
+    return render(request, "accounts/pedidosprov.html", {
+        "form_nuevo": form_nuevo,
+        "form_existente": form_existente,
+        "pedidos_nuevos": pedidos_nuevos,
+        "pedidos_existentes": pedidos_existentes,
+        "tipo": tipo,
+        "error": mensaje_error
+    })
+
 
 def producto(request):
     mensaje_error = None
@@ -93,6 +165,7 @@ def producto(request):
         if form.is_valid():
             nombre = form.cleaned_data['producto']
             cantidad = form.cleaned_data['cantidad']
+            unidad = form.cleaned_data['unidad']
 
             # 🔥 BUSCAR SI EXISTE
             producto_obj, creado = Producto.objects.get_or_create(
