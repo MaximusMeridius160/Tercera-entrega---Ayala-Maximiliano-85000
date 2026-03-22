@@ -17,7 +17,7 @@
         
     </header>
         
-        <nav>
+    <nav>
         <ul class="menu">
             <li><a href="{% url 'general' %}">Inicio</a></li>
             <li class="dropdown">
@@ -27,8 +27,16 @@
                     <li><a href="#">Desconectadas</a></li>
                 </ul>
             </li>
-            <li><a href="{% url 'pedidosprov' %}"> Pedidos a proveedores</a></li>
+            <li class="dropdown">
+            <a href="#">Proveedores</a>
+            <ul class="submenu">
+                <li><a href="{% url 'agregarproveedor' %}">Agregar proveedor</a></li>
+                <li><a href="{% url 'pedidosprov' %}"> Pedidos a proveedores</a></li>
+
+            </ul>
+            </li>
             <li><a href="{% url 'productos' %}"> Productos</a></li>
+            <li><a href="{% url 'stock' %}"> Stock</a></li>
         </ul>
     </nav>
 

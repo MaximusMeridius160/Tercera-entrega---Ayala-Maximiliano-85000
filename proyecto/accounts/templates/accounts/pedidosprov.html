@@ -14,7 +14,8 @@
         <h2 class="title">Pedidos a proveedores</h2>
     </header>
         
-        <nav>
+        
+<nav>
         <ul class="menu">
             <li><a href="{% url 'general' %}">Inicio</a></li>
             <li class="dropdown">
@@ -33,9 +34,9 @@
             </ul>
             </li>
             <li><a href="{% url 'productos' %}"> Productos</a></li>
+            <li><a href="{% url 'stock' %}"> Stock</a></li>
         </ul>
     </nav>
-
     <main>
     {% block content %}
         <Button type="button" onclick= "abrirModal('nuevo')" class="btn-nuevo">Agregar pedido producto nuevo </Button>
