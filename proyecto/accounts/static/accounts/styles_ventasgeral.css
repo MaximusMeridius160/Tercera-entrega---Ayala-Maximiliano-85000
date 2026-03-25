@@ -51,6 +51,7 @@ section {
     height: auto;
     margin-top: 20px;
     margin: auto;
+    text-align: center;
 }
 
 /* FONDO OSCURO */
@@ -110,12 +111,11 @@ section {
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
     width: 350px;
     height: auto;
-
 }
 
 /* NAV */
 nav {
-    background-color: #333;
+    background-color: #adaaaa;
     width: 100%;        /* ancho completo */
 }
 
@@ -131,14 +131,15 @@ nav {
 }
 
 .menu a {
-    color: white;
+    color: black;
     text-decoration: none;
     padding: 10px 15px;
     display: block;
 }
 
 .menu a:hover {
-    background-color: #555;
+    background-color: #6b6a6a;
+    color: white;
 }
 
 /* Submenú */
@@ -147,7 +148,7 @@ nav {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #444;
+    background-color: #adaaaa;
     list-style: none;
     padding: 0;
     min-width: 200px;

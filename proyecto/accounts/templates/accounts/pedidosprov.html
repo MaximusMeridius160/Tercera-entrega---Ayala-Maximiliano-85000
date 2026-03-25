@@ -70,15 +70,19 @@
     </div>
 </div>
 
-        <section>
+    <div class="conteiner-section">
+        <section class="nuevos">
             <h3>Lista de pedidos para productos nuevos</h3>
 
-            <table>
+            <table class="tabla-container">
                 <tr>
                     <th>Producto</th>
                     <th>Cantidad pedida</th>
                     <th>Email del proveedor</th>
                     <th>Fecha de pedido</th>
+                    <th>Acciones</th>
+                    <th>Acciones</th>
+                    <th>Acciones</th>
                 </tr>
 
                     {% for d in pedidos_nuevos %}
@@ -98,15 +102,18 @@
         </section>
 
         
-        <section>
+        <section class="existente">
             <h3>Lista de pedidos para productos existente</h3>
 
-            <table>
+            <table class="tabla-container">
                 <tr>
                     <th>Producto</th>
                     <th>Cantidad pedida</th>
                     <th>Email del proveedor</th>
                     <th>Fecha de pedido</th>
+                    <th>Acciones</th>
+                    <th>Acciones</th>
+                    <th>Acciones</th>
                 </tr>
 
                     {% for a in pedidos_existentes %}
@@ -124,7 +131,7 @@
             </table>
                 
         </section>
-
+    </div>
 
         
 
@@ -134,6 +141,7 @@
         <script>
             function abrirModal(tipo) {
                 document.getElementById("modal").style.display = "block";
+                document.getElementById("tipoPedido").value = tipo;
 
                 if (tipo=="nuevo"){
                     document.getElementById("formNuevo").style.display="block"

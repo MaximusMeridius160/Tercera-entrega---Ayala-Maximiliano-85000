@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .models import Venta, Producto, Compra, PedidosProv, NuevosProveedores
 from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoCompraForm, NuevoProductoFrom, PedidoExistenteForm, PedidoNuevoForm, NuevoProveedor
+from .graph import *
 
 
 # Create your views here.
@@ -66,7 +67,7 @@ def register(request):
     return render(request, "accounts/register.html", {"form": form})
         
 def general(request):
-    return render(request, "accounts/general.html")
+    return render(request, "accounts/general.html",{"grafico": grafico_pedidos(),"grafico2":grafico_ventas})
 
 
 def ventas_geral(request):
@@ -254,3 +255,6 @@ def ventas_geral(request):
         "ventas": ventas,
         "error": mensaje_error
     })
+
+
+    

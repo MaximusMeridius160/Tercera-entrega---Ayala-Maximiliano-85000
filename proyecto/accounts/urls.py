@@ -31,6 +31,7 @@ urlpatterns = [
     path('productos/',views.compra, name= "productos"),
     path('instagram/',views.instagram, name= "instagram"),
     path('stock/',views.producto, name= "stock"),
-    path('agregarproveedor/',views.agregarproveedor, name="agregarproveedor")
+    path('agregarproveedor/',views.agregarproveedor, name="agregarproveedor"),
+    
     
 ]
