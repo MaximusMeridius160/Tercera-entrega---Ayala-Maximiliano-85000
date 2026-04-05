@@ -257,4 +257,5 @@ def ventas_geral(request):
     })
 
 
-    
+def user_profile(request):
+    return render(request, "accounts/user_profile.html")

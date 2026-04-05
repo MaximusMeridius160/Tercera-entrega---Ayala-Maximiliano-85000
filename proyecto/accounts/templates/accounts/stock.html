@@ -12,6 +12,7 @@
 <body>
     <header>
         <h2 class="title">Stock de productos disponibles</h2>
+        <a class="user_register" href="{% url 'user_profile' %}">Bienvenido, {{request.user.username}} </a>
     </header>
         <nav>
         <ul class="menu">

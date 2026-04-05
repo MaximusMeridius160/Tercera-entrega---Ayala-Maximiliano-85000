@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} BULONNEX {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'accounts/styles_userPrfile.css' %}">
+    <link rel="icon" href="{% static 'accounts/bulonexIcono.ico' %}">
+</head>
+<body>
+    <header>
+        <h2 class="title">{{request.user.username}}, bienvenido a su perfil</h2>
+    </header>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="{% url 'general' %}">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#">Estado de ventas</a>
+                <ul class="submenu">
+                    <li><a href="{% url 'ventas_geral' %}">General</a></li>
+                    <li><a href="#">Desconectadas</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+            <a href="#">Proveedores</a>
+            <ul class="submenu">
+                <li><a href="{% url 'agregarproveedor' %}">Agregar proveedor</a></li>
+                <li><a href="{% url 'pedidosprov' %}"> Pedidos a proveedores</a></li>
+
+            </ul>
+            </li>
+            <li><a href="{% url 'productos' %}"> Productos</a></li>
+            <li><a href="{% url 'stock' %}"> Stock</a></li>
+        </ul>
+    </nav>
+
+    <main>
+    <!-- FONDO OSCURO -->
+    <div id="modal" class="modal">
+        <!-- CONTENIDO -->
+    <div class="modal-contenido">
+        
+        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+
+        <h3 class="form-title">Editar datos del usuario</h3>
+
+                <form method="POST" id="formEditUsers">
+                    {% csrf_token %}
+                        
+                    {{ form_nuevo.as_p }}
+
+                    <button class="btn-guardar" type="submit">Guardar</button>
+                </form>
+
+                <form method="POST" id="formExistente" style="display:none;">
+                    {% csrf_token %}
+                    <input type="hidden" name="tipo" value="existente">
+                    {{ form_existente.as_p }}
+                    <button class="btn-guardar" type="submit">Guardar</button>
+                </form>
+        
+    </div>
+</div>
+
+            <div class="conteiner-section">
+                <section class="nuevos">
+                <h4>Datos del usuario</h4>
+                    <label for="usuario">Nombre de usuario: {{request.user.username}}</label>
+                    <br>
+                    <label for="nombre">Nombre: {{request.user.first_name}}</label>
+                    <br>
+                    <label for="apellido">Apellido: {{request.user.last_name}}</label>
+                    <br>
+                    <label>Teléfono: {{ request.usuario.telefono }}</label>
+                    <br>
+                    <label for="email">Email: {{request.user.email}}</label>
+                    <br>
+
+                    <button type="button" class="btn-nuevo" onclick="abrirModal()">
+                        Editar usuario
+                    </button>
+                </section>
+        
+                <section class="avatar">
+                    <h4>Avatar</h4>
+                    
+                    <button type="button" class="btn-nuevo" onclick="abrirModal()">
+                        Cargar avatar
+                    </button>
+                </section> 
+            </div>
+    </main>
+
+    <!-- JS -->
+<script>
+function abrirModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+</script>
+
+
+
+<footer>
+        <div class="institucionales"> 
+            <h3 class="titulo">Institucionales</h3>
+                <a href="{% url 'nosotros' %}">Nosotros</a>
+                <a href="{% url 'institucionales' %}">Politicas institucionales</a>
+    
+        </div>
+
+        <div class="apps">
+            <h3 class="titulo">Otras apps</h3>
+                <a href="#">Instagram</a>
+
+        </div>
+    </footer>
+</body>
+</html>

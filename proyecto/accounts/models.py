@@ -11,6 +11,10 @@ class Usuario(models.Model):
     
     def __str__(self):
         return self.user.username
+    
+class edit_users(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 
 class Producto(models.Model):
     producto = models.CharField(max_length=100)

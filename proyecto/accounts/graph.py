@@ -15,8 +15,9 @@ def grafico_pedidos():
     valores = [nuevos, existentes]
 
     #crear grafico
-    plt.figure()
-    plt.bar(labels,valores)
+    plt.figure(figsize=(4,3))
+    plt.title("Pedidos nuevos VS existentes", fontsize=12, fontweight='bold')
+    plt.bar(labels, valores, color='#FF6A00')
     plt.close
 
     #guardar en memoria
@@ -38,8 +39,8 @@ def grafico_ventas():
     totales = [v['total'] for v in venta]
 
     plt.figure()
-    plt.plot(fechas,totales,marker='o')
-    plt.title("Ventas por día")
+    plt.plot(fechas,totales,marker='o', color='#FF6A00', linewidth=2)
+    plt.title("Ventas por día", fontsize=16, fontweight='bold')
     plt.xlabel("Fecha")
     plt.ylabel("Cantidad")
     plt.xticks(rotation=45)
