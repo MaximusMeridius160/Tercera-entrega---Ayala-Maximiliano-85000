@@ -12,6 +12,10 @@
 <body>
     <header>
         <h2 class="title">{{request.user.username}}, bienvenido a su perfil</h2>
+        <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn-nuevo" type="submit">Cerrar sesión</button>
+</form>
     </header>
 
     <nav>
@@ -39,7 +43,7 @@
 
     <main>
     <!-- FONDO OSCURO -->
-    <div id="modal" class="modal">
+<div id="modal" class="modal">
         <!-- CONTENIDO -->
     <div class="modal-contenido">
         
@@ -50,16 +54,32 @@
                 <form method="POST" id="formEditUsers">
                     {% csrf_token %}
                         
-                    {{ form_nuevo.as_p }}
+                    {{ form_user.as_p }}
 
-                    <button class="btn-guardar" type="submit">Guardar</button>
+                    <button class="btn-guardar" type="submit" name="guardar_usuario">Guardar</button>
                 </form>
+        
+    </div>
+</div>
 
-                <form method="POST" id="formExistente" style="display:none;">
+
+    <!-- FONDO OSCURO -->
+<div id="avatar" class="modal">
+        <!-- CONTENIDO -->
+    <div class="modal-contenido">
+        
+        <span class="cerrar" onclick="cerrarAvatar()">&times;</span>
+
+        <h3 class="form-title">Cargar avatar</h3>
+
+                <form method="POST" enctype="multipart/form-data" >
                     {% csrf_token %}
-                    <input type="hidden" name="tipo" value="existente">
-                    {{ form_existente.as_p }}
-                    <button class="btn-guardar" type="submit">Guardar</button>
+                        <img id="previewAvatar" 
+                            src="{% if request.user.avatar.image %}{{ request.user.avatar.image.url }}{% else %}{% static 'accounts/images/default-avatar.png' %}{% endif %}" 
+                            class="avatar-img">
+                    {{ form_avatar.as_p }}
+
+                    <button class="btn-guardar" type="submit" name="guardar_avatar">Guardar</button>
                 </form>
         
     </div>
@@ -70,11 +90,12 @@
                 <h4>Datos del usuario</h4>
                     <label for="usuario">Nombre de usuario: {{request.user.username}}</label>
                     <br>
+                    <br>
                     <label for="nombre">Nombre: {{request.user.first_name}}</label>
+                    <br>
                     <br>
                     <label for="apellido">Apellido: {{request.user.last_name}}</label>
                     <br>
-                    <label>Teléfono: {{ request.usuario.telefono }}</label>
                     <br>
                     <label for="email">Email: {{request.user.email}}</label>
                     <br>
@@ -82,12 +103,27 @@
                     <button type="button" class="btn-nuevo" onclick="abrirModal()">
                         Editar usuario
                     </button>
+
+
+
+
                 </section>
         
                 <section class="avatar">
                     <h4>Avatar</h4>
-                    
-                    <button type="button" class="btn-nuevo" onclick="abrirModal()">
+                
+                    {% if request.user.avatar and request.user.avatar.image %}
+                        <img src="{{ request.user.avatar.image.url }}" class="rounded-circle" >
+                    {% else %}
+                        <img src="{% static 'accounts/images/avatar_default.jpg' %}" class="rounded-circle">
+                    {% endif %}
+                    <br>
+                    <br>
+                    <label for="usuario"> {{request.user.username}}</label>
+                    <br>
+
+
+                    <button type="button" class="btn-nuevo" onclick="abrirFormAvatar()">
                         Cargar avatar
                     </button>
                 </section> 
@@ -104,6 +140,23 @@ function cerrarModal() {
     document.getElementById("modal").style.display = "none";
 }
 
+
+function abrirFormAvatar() {
+    document.getElementById("avatar").style.display = "flex";
+}
+
+function cerrarAvatar() {
+    document.getElementById("avatar").style.display = "none";
+}
+
+document.getElementById("id_image").addEventListener("change", function(event) {
+    const preview = document.getElementById("previewAvatar");
+    const file = event.target.files[0];
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+    }
+});
 </script>
 
 
@@ -118,7 +171,7 @@ function cerrarModal() {
 
         <div class="apps">
             <h3 class="titulo">Otras apps</h3>
-                <a href="#">Instagram</a>
+                <a href="{% url 'instagram' %}">Instagram</a>
 
         </div>
     </footer>

@@ -13,6 +13,9 @@
     <header>
         <h2 class="title">Ventas</h2>
         <a class="user_register" href="{% url 'user_profile' %}">Bienvenido, {{request.user.username}} </a>
+        <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn-nuevo" type="submit">Cerrar sesión</button>
     </header>
         
     <nav>
@@ -122,7 +125,7 @@ window.onclick = function(e) {
 
         <div class="apps">
             <h3 class="titulo">Otras apps</h3>
-                <a href="#">Instagram</a>
+                <a href="{% url 'instagram' %}">Instagram</a>
 
         </div>
     </footer>

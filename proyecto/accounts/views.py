@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import Venta, Producto, Compra, PedidosProv, NuevosProveedores
-from .forms import LoginFormulario, RegistroUsuarioForm, NuevaVentaForm, NuevoCompraForm, NuevoProductoFrom, PedidoExistenteForm, PedidoNuevoForm, NuevoProveedor
+from .forms import *
 from .graph import *
 
 
@@ -256,6 +257,44 @@ def ventas_geral(request):
         "error": mensaje_error
     })
 
-
+@login_required
 def user_profile(request):
-    return render(request, "accounts/user_profile.html")
+
+    avatar, creado = Avatar.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+
+        # 👉 FORM USUARIO
+        if 'guardar_usuario' in request.POST:
+            form_user = EditProfileForm(request.POST, instance=request.user)
+            form_avatar = AvatarForm(instance=avatar)
+
+            if form_user.is_valid():
+                form_user.save()
+                return redirect('user_profile')
+
+        # 👉 FORM AVATAR
+        elif 'guardar_avatar' in request.POST:
+            form_user = EditProfileForm(instance=request.user)
+            form_avatar = AvatarForm(request.POST, request.FILES, instance=avatar)
+
+            if form_avatar.is_valid():
+                form_avatar.save()
+                return redirect('user_profile')
+
+        else:
+            form_user = EditProfileForm(instance=request.user)
+            form_avatar = AvatarForm(instance=avatar)
+
+    else:
+        form_user = EditProfileForm(instance=request.user)
+        form_avatar = AvatarForm(instance=avatar)
+
+    return render(request, "accounts/user_profile.html", {
+        'form_user': form_user,
+        'form_avatar': form_avatar
+    })
+
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('login')  # o donde quieras redirigir

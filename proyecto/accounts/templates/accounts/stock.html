@@ -13,6 +13,9 @@
     <header>
         <h2 class="title">Stock de productos disponibles</h2>
         <a class="user_register" href="{% url 'user_profile' %}">Bienvenido, {{request.user.username}} </a>
+        <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn-nuevo" type="submit">Cerrar sesión</button>
     </header>
         <nav>
         <ul class="menu">
@@ -120,7 +123,7 @@
 
         <div class="apps">
             <h3 class="titulo">Otras apps</h3>
-                <a href="#">Instagram</a>
+                <a href="{% url 'instagram' %}">Instagram</a>
 
         </div>
     </footer>

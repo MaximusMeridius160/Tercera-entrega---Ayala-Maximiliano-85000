@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Usuario, Producto, Compra, PedidosProv, edit_users
+from .models import *
 
 class LoginFormulario(forms.Form):
     email = forms.EmailField()
@@ -15,9 +15,22 @@ class RegistroUsuarioForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class EditUsers(UserCreationForm):
-    pass
-
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+        help_texts = {
+            'username': '',
+        }
+        labels = {
+            'email': 'Correo Electrónico',
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+        }
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['image']
 
 class NuevoProductoFrom(forms.Form):
     producto = forms.CharField(required=True)

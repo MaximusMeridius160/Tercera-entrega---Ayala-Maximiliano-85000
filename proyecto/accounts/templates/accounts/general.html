@@ -13,6 +13,9 @@
     <header>
         <h2 class="title">Pagina principal</h2>
         <a class="user_register" href="{% url 'user_profile' %}">Bienvenido, {{request.user.username}} </a>
+        <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn-nuevo" type="submit">Cerrar sesión</button>
     </header>
         
     <nav>
