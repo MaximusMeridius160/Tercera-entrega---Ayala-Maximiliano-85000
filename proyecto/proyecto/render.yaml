@@ -1,0 +1,14 @@
+service:
+  type: web
+
+  name: accounts
+  runtime: python
+  plan: free
+  region: oregon
+  branch: main
+
+  buildComand: bash build.sh
+
+  startcommand: gunicorn accounts.wsgi:application
+
+  healthCheckPath: /

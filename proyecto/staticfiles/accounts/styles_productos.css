@@ -1,0 +1,372 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Altura total para sticky footer */
+html, body {
+    height: 100%;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url("/static/accounts/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Header */
+header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #FF6A00;
+    padding: 0 10px;
+
+}
+
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+/* Caja del formulario */
+section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    width: 340px;
+    height: auto;
+    margin-top: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+th{
+    border: 2px solid black;
+}
+
+th{
+    padding: 8px;
+    text-align: center;
+    margin: auto;
+    background-color: #e2dddd;
+}
+
+/* FONDO OSCURO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* CAJA DEL MODAL */
+.modal-contenido {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+    animation: aparecer 0.3s ease;
+}
+
+/* BOTÓN CERRAR */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ANIMACIÓN */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*-----------------------------------NAV---------------------------------------------- */
+nav {
+    background-color: #adaaaa;
+    width: 100%;        /* ancho completo */
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.menu li {
+    position: relative; /* necesario para submenú */
+}
+
+.menu a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.menu a:hover {
+    background-color: #6b6a6a;
+    color: white;
+}
+
+/* Submenú */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #adaaaa;
+    list-style: none;
+    padding: 0;
+    min-width: 200px;
+}
+
+.submenu li a {
+    padding: 10px 15px;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* Main flexible */
+main {
+    flex: 1;          /* ocupa el espacio disponible */
+    display: block;   /* no afecta al nav */
+    padding: 20px;
+}
+
+/* Botón alineado a la izquierda */
+/* Contenedor del botón */
+.btn-container {
+    display: flex;
+    justify-content: flex-end;  /* lo alinea a la derecha */
+    padding: 0 5px;            /* separación opcional de los lados */
+    margin: auto;
+}
+
+/* Estilo del botón */
+.btn-nuevo {
+    background-color: #FF6A00;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-nuevo:hover {
+    background-color:#ff6a0077;
+;
+}
+
+.btn-eliminar {
+    background-color: #da0909;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-eliminar:hover {
+    background-color: #dd7979;
+}
+
+.btn-modificar {
+    background-color: #35ce07;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-modificar:hover {
+    background-color: #63e45e;
+}
+
+.status{
+    border: 2px solid rgb(155, 155, 155);
+    grid-template-columns: 20px;
+    margin: 20px;
+    background-color: white;
+}
+
+.repuestos{
+    border: 2px solid rgb(155, 155, 155);
+    grid-template-columns: 20px;
+    margin: 20px;
+    background-color: white;
+}
+
+h4{ 
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #333F4B;
+    color: white;
+    margin-bottom: 5px;
+
+}
+
+h5{ 
+    display: flex;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 5px;
+    color:black;
+    margin-bottom: 5px;
+
+}
+
+/* Footer sticky */
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 14px;
+
+}
+
+a{
+    display: flex;
+    grid-template-columns: 100px ;
+    gap: 8px 30px;
+    text-decoration: none;
+    color: antiquewhite;
+    margin-top: 4px ;
+}
+
+/* 🔥 FIX MODAL */
+.modal {
+    display: none;
+
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.6);
+
+    justify-content: center;  /* 🔥 CLAVE */
+    align-items: center;      /* 🔥 CLAVE */
+}
+
+/* 🔥 CONTENIDO */
+
+.form-title{
+    background-color:#2F2F2F;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border-color: #FF6A00;
+    border-style: groove;
+    margin: 10px;
+}
+
+.modal-contenido {
+    background-color: #BFC3C7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* 🔥 FORMULARIO */
+.modal-contenido form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+/* 🔥 INPUTS VISIBLES */
+.modal-contenido input,
+.modal-contenido select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* LABELS */
+.modal-contenido label {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+
+.btn-guardar{
+    background-color: #FF6A00;
+    color: white;
+    padding-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;       
+}
+
+.btn-guardar:hover{
+    background-color: #ff6a0077;
+    color: black;
+}

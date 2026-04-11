@@ -1,0 +1,309 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Altura total para sticky footer */
+html, body {
+    height: 100%;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url("/static/accounts/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Header */
+header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #FF6A00;
+    padding: 0 10px;
+
+}
+
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(240, 231, 237);
+    font-size: 20px;
+}
+
+.user_register{
+    color: black;
+
+}
+
+/* Caja del formulario */
+section {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    width: 350px;
+    height: 280px;
+    margin-top: 20px;
+    margin: auto;
+}
+
+.registro{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    width: 350px;
+    height: auto;
+
+}
+
+.errorlist{
+    color: red;
+    font-size: 13px;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Inputs */
+input {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #333F4B;
+    outline: none;
+    box-shadow: 0 0 5px rgba(47, 119, 253, 0.5);
+}
+
+/* Botón */
+button {
+    padding: 12px;
+    background-color: #333F4B;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #6D87A1;
+}
+
+.register-link {
+    position: relative;
+    top: 100%;
+    color: #1f2a38;
+    text-decoration: none;
+    padding: 10px;
+    
+}
+
+.register-link:hover {
+    color: rgba(47, 119, 253, 0.5);
+}
+/*-----FORMULARIO---------------------------------*/
+
+/* NAV */
+nav {
+    background-color: #333;
+    width: 100%;        /* ancho completo */
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.menu li {
+    position: relative; /* necesario para submenú */
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+/* Submenú */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    min-width: 200px;
+}
+
+.submenu li a {
+    padding: 10px 15px;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* Main flexible */
+main {
+    flex: 1;          /* ocupa el espacio disponible */
+    display: block;   /* no afecta al nav */
+    padding: 20px;
+}
+
+/* Botón alineado a la izquierda */
+/* Contenedor del botón */
+.btn-container {
+    display: flex;
+    justify-content: flex-end;  /* lo alinea a la derecha */
+    padding: 0 5px;            /* separación opcional de los lados */
+    margin: auto;
+}
+
+/* Estilo del botón */
+.btn-nuevo {
+    background-color: #333F4B;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-nuevo:hover {
+    background-color: #6D87A1;
+}
+
+.btn-eliminar {
+    background-color: #da0909;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-eliminar:hover {
+    background-color: #dd7979;
+}
+
+.btn-modificar {
+    background-color: #35ce07;
+    color: white;
+    margin: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: auto;               /* no ocupa todo el ancho */
+}
+
+.btn-modificar:hover {
+    background-color: #63e45e;
+}
+
+.status{
+    border: 2px solid rgb(155, 155, 155);
+    grid-template-columns: 20px;
+    margin: 20px;
+    background-color: white;
+}
+
+.repuestos{
+    border: 2px solid rgb(155, 155, 155);
+    grid-template-columns: 20px;
+    margin: 20px;
+    background-color: white;
+}
+
+h4{ 
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #333F4B;
+    color: white;
+    margin-bottom: 5px;
+
+}
+
+h5{ 
+    display: flex;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 5px;
+    color:black;
+    margin-bottom: 5px;
+
+}
+
+/* Footer sticky */
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 14px;
+
+}
+
+a{
+    display: flex;
+    grid-template-columns: 100px ;
+    gap: 8px 30px;
+    text-decoration: none;
+    color: antiquewhite;
+    margin-top: 4px ;
+}
+
+
