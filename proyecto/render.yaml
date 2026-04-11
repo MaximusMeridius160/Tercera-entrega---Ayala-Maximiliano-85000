@@ -7,8 +7,7 @@ service:
   region: oregon
   branch: main
 
-  buildComand: bash build.sh
+  buildComand:  "./build.sh"
 
   startcommand: gunicorn proyecto.wsgi:application
 
-  healthCheckPath: /
