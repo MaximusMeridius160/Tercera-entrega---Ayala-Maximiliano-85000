@@ -1,7 +1,7 @@
 service:
   type: web
 
-  name: accounts
+  name: proyecto
   runtime: python
   plan: free
   region: oregon
@@ -9,6 +9,6 @@ service:
 
   buildComand: bash build.sh
 
-  startcommand: gunicorn accounts.wsgi:application
+  startcommand: gunicorn proyecto.wsgi:application
 
   healthCheckPath: /
