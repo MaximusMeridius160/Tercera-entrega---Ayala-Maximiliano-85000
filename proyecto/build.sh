@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -o errexit
 
 py -m pip install --upgrade pip
